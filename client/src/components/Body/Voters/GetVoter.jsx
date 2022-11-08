@@ -10,7 +10,7 @@ function GetVoter() {
     setInputValue(e.target.value);
   };
 
-  const getVoter = async e => {
+  const getVoter = async () => {
     if (inputValue === "") {
       alert("Please enter a value to write.");
       return;
