@@ -1,7 +1,12 @@
+import WinningProposalId from "./WinningProposalId";
+import GetVoter from "./GetVoter";
+
 function Voter() {
+
   return (
     <>
-      Voter
+      <WinningProposalId />
+      <GetVoter />
     </>
   );
 }
