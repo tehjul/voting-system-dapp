@@ -20,11 +20,16 @@ function Header({setCurrentPage}) {
     fetchOwner();
   }, [owner, contract]);
 
+  function isOwner() {
+    if (owner && accounts) return owner === accounts[0];
+    return false;
+  }
+
   return (
     <>
       <Welcome />
       <Desc owner={owner} accounts={accounts} />
-      <MenuButtons setCurrentPage={setCurrentPage} />
+      <MenuButtons setCurrentPage={setCurrentPage} isOwner={isOwner()} />
     </>
   );
 }

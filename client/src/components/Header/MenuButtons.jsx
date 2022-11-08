@@ -1,4 +1,4 @@
-function MenuButtons({setCurrentPage}) {
+function MenuButtons({ setCurrentPage, isOwner }) {
 
   const voter = () => {
     setCurrentPage("Voter");
@@ -10,8 +10,8 @@ function MenuButtons({setCurrentPage}) {
 
   return (
     <>
-    <button onClick={voter}>Voter</button>
-    <button onClick={administrator}>Administrator</button>
+      {isOwner && <button onClick={voter}>Voter</button>}
+      {isOwner && <button onClick={administrator}>Administrator</button>}
     </>
   );
 }
