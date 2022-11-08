@@ -1,20 +1,21 @@
 import { EthProvider } from "./contexts/EthContext";
-import Intro from "./components/Intro/";
-import Setup from "./components/Setup";
-import Demo from "./components/Demo";
+import Header from "./components/Header";
+import Body from "./components/Body";
 import Footer from "./components/Footer";
 import "./App.css";
+import { useState } from "react";
 
 function App() {
+  
+  const [currentPage, setCurrentPage] = useState("Voter");
+
   return (
     <EthProvider>
       <div id="App" >
         <div className="container">
-          <Intro />
+          <Header setCurrentPage={setCurrentPage} />
           <hr />
-          <Setup />
-          <hr />
-          <Demo />
+          <Body currentPage={currentPage} />
           <hr />
           <Footer />
         </div>
