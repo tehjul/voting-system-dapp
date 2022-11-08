@@ -15,7 +15,6 @@ function GetVoter() {
       alert("Please enter a value to write.");
       return;
     }
-    console.log(inputValue.length);
     if (inputValue.length === 42  && web3.utils.checkAddressChecksum(inputValue)) {
       await contract.methods.getVoter(inputValue).call().then(
         data => {
