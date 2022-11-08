@@ -12,7 +12,7 @@ function GetVoter() {
 
   const getVoter = async () => {
     if (inputValue === "") {
-      alert("Please enter a value to write.");
+      alert("Please enter a voter address.");
       return;
     }
     if (inputValue.length === 42  && web3.utils.checkAddressChecksum(inputValue)) {

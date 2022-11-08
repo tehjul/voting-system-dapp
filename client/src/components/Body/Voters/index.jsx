@@ -1,5 +1,6 @@
 import WinningProposalId from "./WinningProposalId";
 import GetVoter from "./GetVoter";
+import GetOneProposal from "./GetOneProposal";
 
 function Voter() {
 
@@ -7,6 +8,7 @@ function Voter() {
     <>
       <WinningProposalId />
       <GetVoter />
+      <GetOneProposal />
     </>
   );
 }
