@@ -33,6 +33,9 @@ function StartProposalsRegistering() {
   }, [contract]);
 
   // TODO: to refactor
+  // const a = new Map([['1 Item', 'abc'], ['2 Item', 'def']]);
+  // let indexVal =   [...a][1];
+  // console.log(indexVal);
   const func = [
     [startProposalsRegistering, "Start proposals registering"],
     [endProposalsRegistering, "End proposals registering"]
