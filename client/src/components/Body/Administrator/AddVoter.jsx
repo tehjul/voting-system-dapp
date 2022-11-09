@@ -32,9 +32,7 @@ function AddVoter() {
           let lesevents = event.returnValues.voterAddress;
           setEventValue(lesevents);
         })          
-        .on('changed', changed => console.log(changed))
         .on('error', err => console.log(err))
-        .on('connected', str => console.log(str))
     })();
   }, [contract])
 
