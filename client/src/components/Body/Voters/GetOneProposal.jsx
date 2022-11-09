@@ -2,8 +2,8 @@ import { useState } from "react";
 import useEth from "../../../contexts/EthContext/useEth";
 
 function GetOneProposal() {
-  const { state: { contract } } = useEth();
-  const [proposal, setProposal] = useState({});
+  const { state: { contract, accounts } } = useEth();
+  const [proposal, setProposal] = useState("");
   const [inputValue, setInputValue] = useState("");
 
   const handleInputChange = e => {
@@ -17,7 +17,8 @@ function GetOneProposal() {
       alert("Please enter a proposal id.");
       return;
     }
-    await contract.methods.getOneProposal(inputValue).call().then(
+    setProposal("");
+    await contract.methods.getOneProposal(inputValue).call({from: accounts[0]}).then(
       data => {
         setProposal({
           description: data.description,
@@ -38,7 +39,7 @@ function GetOneProposal() {
         onChange={handleInputChange}
       ></input>
       <button onClick={getProposal}>Get a proposal informations</button>
-      <code>Description : {proposal.description}</code>
+      {proposal && <code>Description : {proposal.description}</code>}
     </>
   );
 }

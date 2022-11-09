@@ -1,7 +1,9 @@
+import AddVoter from "./AddVoter";
+
 function Administrator() {
   return (
     <>
-      Administrator
+      <AddVoter />
     </>
   );
 }

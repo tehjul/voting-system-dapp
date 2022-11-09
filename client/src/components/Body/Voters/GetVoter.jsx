@@ -2,8 +2,8 @@ import { useState } from "react";
 import useEth from "../../../contexts/EthContext/useEth";
 
 function GetVoter() {
-  const { state: { contract, web3 } } = useEth();
-  const [voter, setVoter] = useState({});
+  const { state: { contract, web3, accounts } } = useEth();
+  const [voter, setVoter] = useState();
   const [inputValue, setInputValue] = useState("");
 
   const handleInputChange = e => {
@@ -16,7 +16,8 @@ function GetVoter() {
       return;
     }
     if (inputValue.length === 42  && web3.utils.checkAddressChecksum(inputValue)) {
-      await contract.methods.getVoter(inputValue).call().then(
+      setVoter("");
+      await contract.methods.getVoter(inputValue).call({from: accounts[0]}).then(
         data => {
           setVoter({
             registered: data.isRegistered ? "Yes" : "No",
@@ -41,7 +42,11 @@ function GetVoter() {
         onChange={handleInputChange}
       ></input>
       <button onClick={getVoter}>Get a voter informations</button>
-      <code>Registered : {voter.registered}</code>
+      {voter && <code>
+        Registered : {voter.registered} /
+        Has voted : {voter.voted} /
+        Voted for proposal ID : {voter.votedFor} 
+      </code>}
     </>
   );
 }
