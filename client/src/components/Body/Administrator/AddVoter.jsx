@@ -15,7 +15,7 @@ function AddVoter() {
       alert("Please enter a voter address.");
       return;
     }
-    if (inputValue.length === 42 && web3.utils.checkAddressChecksum(inputValue)) {
+    if (web3.utils.isAddress(inputValue)) {
       setEventValue("");
       await contract.methods.addVoter(inputValue).send({ from: accounts[0] }).catch(revert => {
         alert(revert.message)

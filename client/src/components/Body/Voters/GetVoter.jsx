@@ -15,7 +15,7 @@ function GetVoter() {
       alert("Please enter a voter address.");
       return;
     }
-    if (inputValue.length === 42  && web3.utils.checkAddressChecksum(inputValue)) {
+    if (web3.utils.isAddress(inputValue)) {
       setVoter("");
       await contract.methods.getVoter(inputValue).call({from: accounts[0]}).then(
         data => {
@@ -26,7 +26,7 @@ function GetVoter() {
           })
         }
       ).catch(revert => {
-        alert(revert.message)
+        alert(revert)
       })
     } else {
       alert("Invalid address");
