@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import useEth from "../../../contexts/EthContext/useEth";
 
 function StartProposalsRegistering() {
-  const { state: { contract, accounts } } = useEth();
+  const { state: { contract, accounts, currentStatus } } = useEth();
   const [eventValue, setEventValue] = useState("");
 
   const startProposalsRegistering = async () => {
@@ -12,9 +12,15 @@ function StartProposalsRegistering() {
       })
   };
 
+  const endProposalsRegistering = async () => {
+    await contract.methods.endProposalsRegistering().send({ from: accounts[0] })
+      .catch(revert => {
+        alert(revert.message)
+      })
+  };
+
   useEffect(() => {
     (async function () {
-      console.log("dans useeffect")
       await contract.events.WorkflowStatusChange({ fromBlock: "earliest" })
         .on('data', event => {
           setEventValue({
@@ -26,9 +32,15 @@ function StartProposalsRegistering() {
     })();
   }, [contract]);
 
+  // TODO: to refactor
+  const func = [
+    [startProposalsRegistering, "Start proposals registering"],
+    [endProposalsRegistering, "End proposals registering"]
+  ]
+
   return (
     <>
-      <button onClick={startProposalsRegistering}>Start proposals registering phase</button>
+      <button onClick={func[currentStatus][0]}>{func[currentStatus][1]} phase</button>
       {eventValue && <code>Successfully switched from status {eventValue.oldStatus} to {eventValue.newStatus}</code>}
     </>
   );
