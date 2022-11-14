@@ -36,14 +36,14 @@ function StartProposalsRegistering() {
   // const a = new Map([['1 Item', 'abc'], ['2 Item', 'def']]);
   // let indexVal =   [...a][1];
   // console.log(indexVal);
-  const func = [
-    [startProposalsRegistering, "Start proposals registering"],
-    [endProposalsRegistering, "End proposals registering"]
+  const functions = [
+    startProposalsRegistering,
+    endProposalsRegistering,
   ]
 
   return (
     <>
-      <button onClick={func[currentStatus][0]}>{func[currentStatus][1]} phase</button>
+      <button onClick={functions[currentStatus]}>Start next phase</button>
       {eventValue && <code>Successfully switched from status {eventValue.oldStatus} to {eventValue.newStatus}</code>}
     </>
   );

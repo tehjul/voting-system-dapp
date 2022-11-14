@@ -6,7 +6,7 @@ import "./App.css";
 import { useState } from "react";
 
 function App() {
-  
+
   const [currentPage, setCurrentPage] = useState("Voter");
 
   return (

@@ -4,8 +4,15 @@ import StartProposalsRegistering from "./StartProposalsRegistering";
 function Administrator() {
   return (
     <>
-      <AddVoter />
-      <StartProposalsRegistering />
+      <div>
+        <StartProposalsRegistering />
+      </div>
+      <hr />
+      <div>
+        <AddVoter />
+      </div>
+
+
     </>
   );
 }
