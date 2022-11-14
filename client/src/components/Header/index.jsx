@@ -4,8 +4,8 @@ import MenuButtons from "./MenuButtons";
 import { useEth } from "../../contexts/EthContext";
 import { useState, useEffect } from "react";
 
-function Header({ setCurrentPage, currentWorkflowStatus }) {
-  const { state: { accounts, contract } } = useEth();
+function Header({ setCurrentPage, currentWorkflowStatus, setcurrentWorkflowStatus, statusesName }) {
+  const { state: { accounts, contract, currentStatus } } = useEth();
   const [owner, setOwner] = useState("");
 
   useEffect(() => {
@@ -17,8 +17,16 @@ function Header({ setCurrentPage, currentWorkflowStatus }) {
         setOwner("");
       }
     }
+    async function fetchStatus() {
+      try {
+        setcurrentWorkflowStatus(statusesName[currentStatus]);
+      } catch (err) {
+        setcurrentWorkflowStatus("");
+      }
+    }
     fetchOwner();
-  }, [owner, contract]);
+    fetchStatus()
+  }, [owner, contract, statusesName, currentStatus, setcurrentWorkflowStatus]);
 
   function isOwner() {
     if (owner && accounts) return owner === accounts[0];

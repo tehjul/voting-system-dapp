@@ -1,20 +1,9 @@
-import { useMemo } from "react";
 import { useState, useEffect } from "react";
 import useEth from "../../../contexts/EthContext/useEth";
 
-function NextPhase({ setcurrentWorkflowStatus }) {
+function NextPhase({ setcurrentWorkflowStatus, statusesName }) {
   const { state: { contract, accounts, currentStatus } } = useEth();
   const [eventValue, setEventValue] = useState("");
-  
-  const statusesName = useMemo(() =>
-    [
-      "Registering voters",
-      "Proposals registration started",
-      "Proposals registration ended",
-      "Voting session started",
-      "Voting session ended",
-      "Votes tallied"
-    ], []);
 
   const startProposalsRegistering = async () => {
     await contract.methods.startProposalsRegistering().send({ from: accounts[0] })

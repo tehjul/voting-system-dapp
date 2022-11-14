@@ -1,11 +1,14 @@
 import AddVoter from "./AddVoter";
 import NextPhase from "./NextPhase";
 
-function Administrator({setcurrentWorkflowStatus}) {
+function Administrator({ setcurrentWorkflowStatus, statusesName }) {
   return (
     <>
       <div>
-        <NextPhase setcurrentWorkflowStatus={setcurrentWorkflowStatus} />
+        <NextPhase
+          setcurrentWorkflowStatus={setcurrentWorkflowStatus}
+          statusesName={statusesName}
+        />
       </div>
       <hr />
       <div>
