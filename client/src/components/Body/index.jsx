@@ -1,10 +1,10 @@
 import Administrator from "./Administrator";
 import Voter from "./Voters";
 
-function Body({ currentPage }) {
+function Body({ currentPage, setcurrentWorkflowStatus }) {
   return (
     <>
-      {currentPage === "Administrator" ? <Administrator /> : <Voter />}
+      {currentPage === "Administrator" ? <Administrator setcurrentWorkflowStatus={setcurrentWorkflowStatus} /> : <Voter />}
     </>
   );
 }

@@ -1,11 +1,11 @@
 import AddVoter from "./AddVoter";
-import StartProposalsRegistering from "./StartProposalsRegistering";
+import NextPhase from "./NextPhase";
 
-function Administrator() {
+function Administrator({setcurrentWorkflowStatus}) {
   return (
     <>
       <div>
-        <StartProposalsRegistering />
+        <NextPhase setcurrentWorkflowStatus={setcurrentWorkflowStatus} />
       </div>
       <hr />
       <div>

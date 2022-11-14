@@ -4,7 +4,7 @@ import MenuButtons from "./MenuButtons";
 import { useEth } from "../../contexts/EthContext";
 import { useState, useEffect } from "react";
 
-function Header({setCurrentPage}) {
+function Header({ setCurrentPage, currentWorkflowStatus }) {
   const { state: { accounts, contract } } = useEth();
   const [owner, setOwner] = useState("");
 
@@ -28,7 +28,7 @@ function Header({setCurrentPage}) {
   return (
     <>
       <Welcome />
-      <Desc owner={owner} accounts={accounts} />
+      <Desc owner={owner} accounts={accounts} currentWorkflowStatus={currentWorkflowStatus} />
       <MenuButtons setCurrentPage={setCurrentPage} isOwner={isOwner()} />
     </>
   );

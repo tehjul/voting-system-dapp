@@ -2,11 +2,13 @@ import WinningProposalId from "./WinningProposalId";
 import GetVoter from "./GetVoter";
 import GetOneProposal from "./GetOneProposal";
 import AddProposal from "./AddProposal";
+import SetVote from "./SetVote";
 
 function Voter() {
 
   return (
     <>
+      <h4>Informations</h4>
       <div>
         <WinningProposalId />
       </div>
@@ -17,10 +19,13 @@ function Voter() {
         <GetOneProposal />
       </div>
       <hr />
+      <h4>Proposal</h4>
       <div>
         <AddProposal />
       </div>
-
+      <hr />
+      <h4>Vote</h4>
+      <SetVote />
     </>
   );
 }
