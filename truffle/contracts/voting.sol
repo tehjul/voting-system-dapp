@@ -122,6 +122,7 @@ contract Voting is Ownable {
      *
      * Requirements:
      *
+     * - Only owner of the contract can call this function.
      * - Workflow Status must be set to RegisteringVoters.
      * - `_addr` must not be already registered.
      */
@@ -198,9 +199,9 @@ contract Voting is Ownable {
 
         if (
             proposalsArray[_id].voteCount >
-            proposalsArray[winningProposalId].voteCount
+            proposalsArray[winningProposalID].voteCount
         ) {
-            winningProposalId = proposalId;
+            winningProposalID = _id;
         }
 
         emit Voted(msg.sender, _id);
@@ -208,6 +209,19 @@ contract Voting is Ownable {
 
     // ::::::::::::: STATE ::::::::::::: //
 
+    /**
+     * @dev Sets workflowStatus to ProposalsRegistrationStarted.
+     *
+     * Change the current status to ProposalsRegistrationStarted.
+     * Add a Genesis proposal with the id 0.
+     *
+     * Emits a {WorkflowStatusChange} event indicating the old status and the new status.
+     *
+     * Requirements:
+     *
+     * - Only owner of the contract can call this function.
+     * - Workflow Status must be set to RegisteringVoters.
+     */
     function startProposalsRegistering() external onlyOwner {
         require(
             workflowStatus == WorkflowStatus.RegisteringVoters,
@@ -225,6 +239,18 @@ contract Voting is Ownable {
         );
     }
 
+    /**
+     * @dev Sets workflowStatus to ProposalsRegistrationEnded.
+     *
+     * Change the current status to ProposalsRegistrationEnded.
+     *
+     * Emits a {WorkflowStatusChange} event indicating the old status and the new status.
+     *
+     * Requirements:
+     *
+     * - Only owner of the contract can call this function.
+     * - Workflow Status must be set to ProposalsRegistrationStarted.
+     */
     function endProposalsRegistering() external onlyOwner {
         require(
             workflowStatus == WorkflowStatus.ProposalsRegistrationStarted,
@@ -237,6 +263,18 @@ contract Voting is Ownable {
         );
     }
 
+    /**
+     * @dev Sets workflowStatus to VotingSessionStarted.
+     *
+     * Change the current status to VotingSessionStarted.
+     *
+     * Emits a {WorkflowStatusChange} event indicating the old status and the new status.
+     *
+     * Requirements:
+     *
+     * - Only owner of the contract can call this function.
+     * - Workflow Status must be set to ProposalsRegistrationEnded.
+     */
     function startVotingSession() external onlyOwner {
         require(
             workflowStatus == WorkflowStatus.ProposalsRegistrationEnded,
@@ -249,6 +287,18 @@ contract Voting is Ownable {
         );
     }
 
+    /**
+     * @dev Sets workflowStatus to VotingSessionEnded.
+     *
+     * Change the current status to VotingSessionEnded.
+     *
+     * Emits a {WorkflowStatusChange} event indicating the old status and the new status.
+     *
+     * Requirements:
+     *
+     * - Only owner of the contract can call this function.
+     * - Workflow Status must be set to VotingSessionStarted.
+     */
     function endVotingSession() external onlyOwner {
         require(
             workflowStatus == WorkflowStatus.VotingSessionStarted,
@@ -261,6 +311,18 @@ contract Voting is Ownable {
         );
     }
 
+    /**
+     * @dev Sets workflowStatus to VotesTallied.
+     *
+     * Change the current status to VotesTallied.
+     *
+     * Emits a {WorkflowStatusChange} event indicating the old status and the new status.
+     *
+     * Requirements:
+     *
+     * - Only owner of the contract can call this function.
+     * - Workflow Status must be set to VotingSessionEnded.
+     */
     function tallyVotes() external onlyOwner {
         require(
             workflowStatus == WorkflowStatus.VotingSessionEnded,
