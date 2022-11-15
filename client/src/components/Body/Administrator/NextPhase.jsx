@@ -48,14 +48,16 @@ function NextPhase({ setcurrentWorkflowStatus, statusesName }) {
     (async function () {
       await contract.events.WorkflowStatusChange({ fromBlock: "earliest" })
         .on('data', event => {
+          let _oldStatus = event.returnValues.previousStatus;
+          let _newStatus = event.returnValues.newStatus
           setEventValue({
-            oldStatus: event.returnValues.previousStatus,
-            newStatus: event.returnValues.newStatus
+            oldStatus: _oldStatus,
+            newStatus: _newStatus
           });
+          setcurrentWorkflowStatus(statusesName[_newStatus]);
         })
         .on('error', err => console.log(err))
     })();
-    setcurrentWorkflowStatus(statusesName[currentStatus]);
   }, [contract, currentStatus, statusesName, setcurrentWorkflowStatus]);
 
   const functions = [
@@ -70,7 +72,7 @@ function NextPhase({ setcurrentWorkflowStatus, statusesName }) {
   return (
     <>
       <button onClick={functions[currentStatus]}>Start next phase</button>
-      {eventValue && <code>Successfully switched from status {eventValue.oldStatus} to {eventValue.newStatus}</code>}
+      {eventValue && <code>Successfully switched from {statusesName[eventValue.oldStatus]} to {statusesName[eventValue.newStatus]}</code>}
     </>
   );
 }

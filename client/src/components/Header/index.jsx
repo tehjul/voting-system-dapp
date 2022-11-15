@@ -25,7 +25,7 @@ function Header({ setCurrentPage, currentWorkflowStatus, setcurrentWorkflowStatu
       }
     }
     fetchOwner();
-    fetchStatus()
+    fetchStatus();
   }, [owner, contract, statusesName, currentStatus, setcurrentWorkflowStatus]);
 
   function isOwner() {
