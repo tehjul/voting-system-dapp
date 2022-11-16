@@ -1,22 +1,25 @@
 import AddVoter from "./AddVoter";
 import NextPhase from "./NextPhase";
+import TransferOwnership from "./TransferOwnership";
 
-function Administrator({ setcurrentWorkflowStatus, statusesName, fetchStatus }) {
+function Administrator({ setcurrentWorkflowStatus, statusesName, fetchStatus, fetchOwner }) {
   return (
     <>
-      <div>
-        <NextPhase
-          setcurrentWorkflowStatus={setcurrentWorkflowStatus}
-          statusesName={statusesName}
-          fetchStatus={fetchStatus}
-        />
-      </div>
+      <NextPhase
+        setcurrentWorkflowStatus={setcurrentWorkflowStatus}
+        statusesName={statusesName}
+        fetchStatus={fetchStatus}
+      />
+
       <hr />
-      <div>
-        <AddVoter />
-      </div>
 
+      <AddVoter />
 
+      <hr />
+
+      <TransferOwnership
+        fetchOwner={fetchOwner}
+      />
     </>
   );
 }

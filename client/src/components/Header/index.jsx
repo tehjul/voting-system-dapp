@@ -2,24 +2,15 @@ import Title from "./Title";
 import ContractInformations from "./ContractInformations";
 import MenuButtons from "./MenuButtons";
 import { useEth } from "../../contexts/EthContext";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
-function Header({ setCurrentPage, currentWorkflowStatus, proposals, fetchStatus, fetchProposals }) {
-  const { state: { accounts, contract } } = useEth();
-  const [owner, setOwner] = useState("");
+function Header({ setCurrentPage, currentWorkflowStatus, fetchStatus, fetchOwner, owner }) {
+  const { state: { accounts } } = useEth();
 
   useEffect(() => {
-    async function fetchOwner() {
-      try {
-        const currentOwner = await contract.methods.owner().call();
-        setOwner(currentOwner);
-      } catch (err) {
-        setOwner("");
-      }
-    };
     fetchStatus();
     fetchOwner();
-  }, [contract, fetchStatus]);
+  }, [fetchStatus, fetchOwner]);
 
   function isOwner() {
     if (owner && accounts) return owner === accounts[0];

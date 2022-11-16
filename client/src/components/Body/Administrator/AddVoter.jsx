@@ -27,17 +27,18 @@ function AddVoter() {
 
   useEffect(() => {
     (async function () {
-        await contract.events.VoterRegistered({fromBlock:"earliest"})
+      await contract.events.VoterRegistered({ fromBlock: "earliest" })
         .on('data', event => {
           let lesevents = event.returnValues.voterAddress;
           setEventValue(lesevents);
-        })          
+        })
         .on('error', err => console.log(err))
     })();
   }, [contract])
 
   return (
-    <>
+    <div>
+      <h4>Voters managment</h4>
       <input
         type="text"
         placeholder="voter address"
@@ -46,7 +47,7 @@ function AddVoter() {
       ></input>
       <button onClick={addVoter}>Register a voter</button>
       {eventValue && <code>Successfully added address {eventValue}</code>}
-    </>
+    </div>
   );
 }
 

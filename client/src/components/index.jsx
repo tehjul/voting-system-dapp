@@ -9,6 +9,7 @@ function Main() {
   const [currentPage, setCurrentPage] = useState("Voter");
   const [currentWorkflowStatus, setcurrentWorkflowStatus] = useState("");
   const [proposals, setProposals] = useState("");
+  const [owner, setOwner] = useState("");
 
   const statusesName = useMemo(() =>
     [
@@ -40,6 +41,15 @@ function Main() {
     }
   };
 
+  const fetchOwner = async () => {
+    try {
+      const currentOwner = await contract.methods.owner().call();
+      setOwner(currentOwner);
+    } catch (err) {
+      setOwner("");
+    }
+  };
+
   return (
     <div className="container">
       <Header
@@ -48,6 +58,8 @@ function Main() {
         proposals={proposals}
         fetchStatus={fetchStatus}
         fetchProposals={fetchProposals}
+        fetchOwner={fetchOwner}
+        owner={owner}
       />
       <hr />
       <Body
@@ -57,6 +69,7 @@ function Main() {
         fetchProposals={fetchProposals}
         fetchStatus={fetchStatus}
         proposals={proposals}
+        fetchOwner={fetchOwner}
       />
       <hr />
       <Footer />

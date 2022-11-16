@@ -74,10 +74,11 @@ function NextPhase({ setcurrentWorkflowStatus, statusesName, fetchStatus }) {
   }
 
   return (
-    <>
+    <div>
+      <h4>Status managment</h4>
       <button onClick={handleNextPhaseClick}>Start next phase</button>
       {eventValue && <code>Successfully switched from {statusesName[eventValue.oldStatus]} to {statusesName[eventValue.newStatus]}</code>}
-    </>
+    </div>
   );
 }
 
