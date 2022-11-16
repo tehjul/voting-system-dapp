@@ -4,7 +4,7 @@ import GetOneProposal from "./GetOneProposal";
 import AddProposal from "./AddProposal";
 import SetVote from "./SetVote";
 
-function Voter({ setProposals }) {
+function Voter({ fetchProposals }) {
 
   return (
     <>
@@ -22,7 +22,7 @@ function Voter({ setProposals }) {
       <h4>Proposal</h4>
       <div>
         <AddProposal
-          setProposals={setProposals}
+          fetchProposals={fetchProposals}
         />
       </div>
       <hr />

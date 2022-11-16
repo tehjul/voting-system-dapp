@@ -2,12 +2,14 @@ import Header from "./Header";
 import Body from "./Body";
 import Footer from "./Footer/Footer";
 import { useState, useMemo } from "react";
+import { useEth } from "../contexts/EthContext";
 
 function Main() {
-  
+  const { state: { accounts, contract, currentStatus } } = useEth();
   const [currentPage, setCurrentPage] = useState("Voter");
   const [currentWorkflowStatus, setcurrentWorkflowStatus] = useState("");
   const [proposals, setProposals] = useState("");
+
   const statusesName = useMemo(() =>
     [
       "Registering voters",
@@ -18,22 +20,40 @@ function Main() {
       "Votes tallied"
     ], []);
 
+  const fetchStatus = async () => {
+    try {
+      setcurrentWorkflowStatus(statusesName[currentStatus]);
+    } catch (err) {
+      setcurrentWorkflowStatus("");
+    }
+  };
+
+  const fetchProposals = async () => {
+    if (currentStatus > 0) {
+      try {
+        const proposals = await contract.methods.getProposals().call({ from: accounts[0] });
+        setProposals(proposals);
+      } catch (err) {
+        setProposals("");
+      }
+    }
+  };
+
   return (
     <div className="container">
       <Header
         setCurrentPage={setCurrentPage}
         currentWorkflowStatus={currentWorkflowStatus}
-        setcurrentWorkflowStatus={setcurrentWorkflowStatus}
-        statusesName={statusesName}
         proposals={proposals}
-        setProposals={setProposals}
+        fetchStatus={fetchStatus}
+        fetchProposals={fetchProposals}
       />
       <hr />
       <Body
         currentPage={currentPage}
         setcurrentWorkflowStatus={setcurrentWorkflowStatus}
         statusesName={statusesName}
-        setProposals={setProposals}
+        fetchProposals={fetchProposals}
       />
       <hr />
       <Footer />

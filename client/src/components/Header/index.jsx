@@ -5,8 +5,8 @@ import { useEth } from "../../contexts/EthContext";
 import { useState, useEffect } from "react";
 import Proposals from "./Proposals";
 
-function Header({ setCurrentPage, currentWorkflowStatus, setcurrentWorkflowStatus, statusesName, proposals, setProposals }) {
-  const { state: { accounts, contract, currentStatus } } = useEth();
+function Header({ setCurrentPage, currentWorkflowStatus, proposals, fetchStatus, fetchProposals }) {
+  const { state: { accounts, contract } } = useEth();
   const [owner, setOwner] = useState("");
 
   useEffect(() => {
@@ -18,18 +18,9 @@ function Header({ setCurrentPage, currentWorkflowStatus, setcurrentWorkflowStatu
         setOwner("");
       }
     };
-
-    async function fetchStatus() {
-      try {
-        setcurrentWorkflowStatus(statusesName[currentStatus]);
-      } catch (err) {
-        setcurrentWorkflowStatus("");
-      }
-    };
-
-    fetchOwner();
     fetchStatus();
-  }, [accounts, owner, contract, statusesName, currentStatus, setcurrentWorkflowStatus]);
+    fetchOwner();
+  }, [accounts, owner, contract, fetchStatus]);
 
   function isOwner() {
     if (owner && accounts) return owner === accounts[0];
@@ -50,7 +41,7 @@ function Header({ setCurrentPage, currentWorkflowStatus, setcurrentWorkflowStatu
       />
       <Proposals
         proposals={proposals}
-        setProposals={setProposals}
+        fetchProposals={fetchProposals}
       />
     </>
   );

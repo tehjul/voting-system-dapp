@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import useEth from "../../../contexts/EthContext/useEth";
 
-function AddProposal({ setProposals }) {
+function AddProposal({ fetchProposals }) {
   const { state: { contract, accounts } } = useEth();
   const [inputValue, setInputValue] = useState("");
   const [eventValue, setEventValue] = useState("");
@@ -19,12 +19,7 @@ function AddProposal({ setProposals }) {
     await contract.methods.addProposal(inputValue).send({ from: accounts[0] }).catch(revert => {
       alert(revert.message)
     });
-    try {
-      const _proposals = await contract.methods.getProposals().call({ from: accounts[0] });
-      setProposals(_proposals);
-    } catch (err) {
-      console.log(err);
-    };
+    await fetchProposals();
   };
 
   useEffect(() => {
