@@ -1,13 +1,13 @@
 import Administrator from "./Administrator";
 import Voter from "./Voters";
 
-function Body({ currentPage, setcurrentWorkflowStatus, statusesName, fetchProposals, fetchStatus, proposals, fetchOwner }) {
+function Body({ currentPage, statusesName, currentWorkflowStatusId, fetchProposals, fetchStatus, proposals, fetchOwner }) {
   return (
     <>
       {currentPage === "Administrator" ?
         <Administrator
-          setcurrentWorkflowStatus={setcurrentWorkflowStatus}
           statusesName={statusesName}
+          currentWorkflowStatusId={currentWorkflowStatusId}
           fetchStatus={fetchStatus}
           fetchOwner={fetchOwner}
         />
@@ -15,6 +15,7 @@ function Body({ currentPage, setcurrentWorkflowStatus, statusesName, fetchPropos
         <Voter
           fetchProposals={fetchProposals}
           proposals={proposals}
+          currentWorkflowStatusId={currentWorkflowStatusId}
         />}
     </>
   );

@@ -8,9 +8,10 @@ import { useEth } from "../contexts/EthContext";
 import "./index.css";
 
 function Main() {
-  const { state: { accounts, contract, currentStatus } } = useEth();
+  const { state: { accounts, contract } } = useEth();
   const [currentPage, setCurrentPage] = useState("Voter");
   const [currentWorkflowStatus, setcurrentWorkflowStatus] = useState("");
+  const [currentWorkflowStatusId, setcurrentWorkflowStatusId] = useState(0);
   const [proposals, setProposals] = useState("");
   const [owner, setOwner] = useState("");
 
@@ -28,13 +29,15 @@ function Main() {
     try {
       const _currentStatus = await contract.methods.workflowStatus().call();
       setcurrentWorkflowStatus(statusesName[_currentStatus]);
+      setcurrentWorkflowStatusId(parseInt(_currentStatus));
     } catch (err) {
       setcurrentWorkflowStatus("");
+      setcurrentWorkflowStatusId(0);
     }
   };
 
   const fetchProposals = async () => {
-    if (currentStatus > 0) {
+    if (currentWorkflowStatusId > 0) {
       try {
         const proposals = await contract.methods.getProposals().call({ from: accounts[0] });
         setProposals(proposals);
@@ -69,8 +72,8 @@ function Main() {
         <hr />
         <Body
           currentPage={currentPage}
-          setcurrentWorkflowStatus={setcurrentWorkflowStatus}
           statusesName={statusesName}
+          currentWorkflowStatusId={currentWorkflowStatusId}
           fetchProposals={fetchProposals}
           fetchStatus={fetchStatus}
           proposals={proposals}

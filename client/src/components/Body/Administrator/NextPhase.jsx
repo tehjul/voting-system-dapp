@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import useEth from "../../../contexts/EthContext/useEth";
 import "./NextPhase.css";
 
-function NextPhase({ setcurrentWorkflowStatus, statusesName, fetchStatus }) {
-  const { state: { contract, accounts, currentStatus } } = useEth();
+function NextPhase({ statusesName, currentWorkflowStatusId, fetchStatus }) {
+  const { state: { contract, accounts } } = useEth();
   const [eventValue, setEventValue] = useState("");
 
   const startProposalsRegistering = async () => {
@@ -59,7 +59,7 @@ function NextPhase({ setcurrentWorkflowStatus, statusesName, fetchStatus }) {
         })
         .on('error', err => console.log(err))
     })();
-  }, [contract, currentStatus, statusesName, setcurrentWorkflowStatus, fetchStatus]);
+  }, [contract, fetchStatus]);
 
   const functions = [
     startProposalsRegistering,
@@ -71,7 +71,7 @@ function NextPhase({ setcurrentWorkflowStatus, statusesName, fetchStatus }) {
   ]
 
   const handleNextPhaseClick = async () => {
-    functions[currentStatus]();
+    functions[currentWorkflowStatusId]();
   }
 
   return (

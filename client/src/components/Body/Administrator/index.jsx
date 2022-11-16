@@ -2,12 +2,12 @@ import AddVoter from "./AddVoter";
 import NextPhase from "./NextPhase";
 import TransferOwnership from "./TransferOwnership";
 
-function Administrator({ setcurrentWorkflowStatus, statusesName, fetchStatus, fetchOwner }) {
+function Administrator({ statusesName, currentWorkflowStatusId, fetchStatus, fetchOwner }) {
   return (
     <>
       <NextPhase
-        setcurrentWorkflowStatus={setcurrentWorkflowStatus}
         statusesName={statusesName}
+        currentWorkflowStatusId={currentWorkflowStatusId}
         fetchStatus={fetchStatus}
       />
 

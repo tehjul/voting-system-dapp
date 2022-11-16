@@ -1,8 +1,8 @@
 import { useState } from "react";
 import useEth from "../../../contexts/EthContext/useEth";
 
-function GetOneProposal() {
-  const { state: { contract, accounts, currentStatus } } = useEth();
+function GetOneProposal({currentWorkflowStatusId}) {
+  const { state: { contract, accounts } } = useEth();
   const [proposal, setProposal] = useState("");
   const [inputValue, setInputValue] = useState("");
 
@@ -18,7 +18,7 @@ function GetOneProposal() {
       alert("Please enter a proposal id.");
       return;
     }
-    if (parseInt(currentStatus) === 0) {
+    if (parseInt(currentWorkflowStatusId) === 0) {
       alert("There's no proposals yet");
       return;
     }

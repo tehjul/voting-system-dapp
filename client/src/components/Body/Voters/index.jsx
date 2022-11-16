@@ -5,7 +5,7 @@ import GetOneProposal from "./GetOneProposal";
 import AddProposal from "./AddProposal";
 import SetVote from "./SetVote";
 
-function Voter({ fetchProposals, proposals }) {
+function Voter({ fetchProposals, proposals, currentWorkflowStatusId }) {
 
   return (
     <>
@@ -16,9 +16,13 @@ function Voter({ fetchProposals, proposals }) {
 
       <hr />
 
-      <WinningProposalId />
+      <WinningProposalId
+        currentWorkflowStatusId={currentWorkflowStatusId}
+      />
       <GetVoter />
-      <GetOneProposal />
+      <GetOneProposal
+        currentWorkflowStatusId={currentWorkflowStatusId}
+      />
 
       <hr />
 
