@@ -18,7 +18,7 @@ function GetOneProposal({currentWorkflowStatusId}) {
       alert("Please enter a proposal id.");
       return;
     }
-    if (parseInt(currentWorkflowStatusId) === 0) {
+    if (currentWorkflowStatusId === 0) {
       alert("There's no proposals yet");
       return;
     }

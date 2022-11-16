@@ -56,7 +56,7 @@ function SetVote({ fetchProposals }) {
         onChange={handleInputChange}
       ></input>
       <button onClick={setVote}>Vote</button>
-      {eventValue && <code>{eventValue.voter} Successfully voted for proposal id {eventValue.proposalId}</code>}
+      {eventValue && <code>{eventValue.voter} successfully voted for proposal id {eventValue.proposalId}</code>}
     </div>
   );
 }
