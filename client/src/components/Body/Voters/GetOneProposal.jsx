@@ -13,12 +13,16 @@ function GetOneProposal() {
   };
 
   const getProposal = async () => {
+    setProposal("");
     if (inputValue === "") {
       alert("Please enter a proposal id.");
       return;
     }
-    setProposal("");
-    await contract.methods.getOneProposal(inputValue).call({from: accounts[0]}).then(
+    if (parseInt(inputValue) === 0) {
+      alert("The genesis proposal contains the private key of a wallet with 1 BTC... ;-)");
+      return;
+    }
+    await contract.methods.getOneProposal(inputValue).call({ from: accounts[0] }).then(
       data => {
         setProposal({
           description: data.description,
@@ -39,7 +43,12 @@ function GetOneProposal() {
         onChange={handleInputChange}
       ></input>
       <button onClick={getProposal}>Get a proposal informations</button>
-      {proposal && <code>Description : {proposal.description}</code>}
+      {proposal && (
+        <>
+          <code>Description : {proposal.description}</code>
+          <code>Vote Count : {proposal.voteCount}</code>
+        </>
+      )}
     </>
   );
 }
