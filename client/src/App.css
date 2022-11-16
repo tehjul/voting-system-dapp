@@ -13,11 +13,8 @@
   --dark-gray: #777;
 }
 
-#App .container {
-  width: 40%;
-  min-width: 60rem;
-  max-width: 75rem;
-  height: 100%;
+#App {
+  background-color: var(--dark-gray);
 }
 
 code {

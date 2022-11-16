@@ -4,6 +4,8 @@ import Footer from "./Footer/Footer";
 import { useState, useMemo } from "react";
 import { useEth } from "../contexts/EthContext";
 
+import "./index.css";
+
 function Main() {
   const { state: { accounts, contract, currentStatus } } = useEth();
   const [currentPage, setCurrentPage] = useState("Voter");
