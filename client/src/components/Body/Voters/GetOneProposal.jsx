@@ -2,7 +2,7 @@ import { useState } from "react";
 import useEth from "../../../contexts/EthContext/useEth";
 
 function GetOneProposal() {
-  const { state: { contract, accounts } } = useEth();
+  const { state: { contract, accounts, currentStatus } } = useEth();
   const [proposal, setProposal] = useState("");
   const [inputValue, setInputValue] = useState("");
 
@@ -16,6 +16,10 @@ function GetOneProposal() {
     setProposal("");
     if (inputValue === "") {
       alert("Please enter a proposal id.");
+      return;
+    }
+    if (parseInt(currentStatus) === 0) {
+      alert("There's no proposals yet");
       return;
     }
     if (parseInt(inputValue) === 0) {
