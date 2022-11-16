@@ -17,7 +17,7 @@ function GetVoter() {
     }
     if (web3.utils.isAddress(inputValue)) {
       setVoter("");
-      await contract.methods.getVoter(inputValue).call({from: accounts[0]}).then(
+      await contract.methods.getVoter(inputValue).call({ from: accounts[0] }).then(
         data => {
           setVoter({
             registered: data.isRegistered ? "Yes" : "No",
@@ -42,11 +42,21 @@ function GetVoter() {
         onChange={handleInputChange}
       ></input>
       <button onClick={getVoter}>Get a voter informations</button>
-      {voter && <code>
-        Registered : {voter.registered} /
-        Has voted : {voter.voted} /
-        Voted for proposal ID : {voter.votedFor} 
-      </code>}
+      {voter &&
+        <>
+          <code>
+            Registered : {voter.registered}
+          </code>
+          <code>
+            Has voted : {voter.voted}
+          </code>
+          {voter.votedFor &&
+            <code>
+              Voted for proposal ID : {voter.votedFor}
+            </code>
+          }
+        </>
+      }
     </div>
   );
 }
