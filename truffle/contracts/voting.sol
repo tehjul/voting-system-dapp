@@ -110,6 +110,25 @@ contract Voting is Ownable {
         return proposalsArray[_id];
     }
 
+    /**
+     * @dev Returns an array of Proposal.
+     * @return Proposal[] A array of struct Proposal with description(string) voteCount(uint).
+     *
+     * Get all proposals informations.
+     *
+     * Requirements:
+     *
+     * - Only registered voters can call this function.
+     */
+    function getProposals()
+        external
+        view
+        onlyVoters
+        returns (Proposal[] memory)
+    {
+        return proposalsArray;
+    }
+
     // ::::::::::::: REGISTRATION ::::::::::::: //
 
     /**
