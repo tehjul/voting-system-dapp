@@ -21,10 +21,11 @@ function WinningProposalId() {
   };
 
   return (
-    <>
+    <div>
+      <h4>Informations</h4>
       <button onClick={getWinningProposal}>Winning proposal ID</button>
       {winningProposalId && <code>{winningProposalId}</code>}
-    </>
+    </div>
   );
 }
 

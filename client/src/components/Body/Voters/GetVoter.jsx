@@ -34,7 +34,7 @@ function GetVoter() {
   };
 
   return (
-    <>
+    <div>
       <input
         type="text"
         placeholder="voter address"
@@ -47,7 +47,7 @@ function GetVoter() {
         Has voted : {voter.voted} /
         Voted for proposal ID : {voter.votedFor} 
       </code>}
-    </>
+    </div>
   );
 }
 

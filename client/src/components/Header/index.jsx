@@ -3,7 +3,6 @@ import ContractInformations from "./ContractInformations";
 import MenuButtons from "./MenuButtons";
 import { useEth } from "../../contexts/EthContext";
 import { useState, useEffect } from "react";
-import Proposals from "./Proposals";
 
 function Header({ setCurrentPage, currentWorkflowStatus, proposals, fetchStatus, fetchProposals }) {
   const { state: { accounts, contract } } = useEth();
@@ -38,10 +37,6 @@ function Header({ setCurrentPage, currentWorkflowStatus, proposals, fetchStatus,
         owner={owner}
         accounts={accounts}
         currentWorkflowStatus={currentWorkflowStatus}
-      />
-      <Proposals
-        proposals={proposals}
-        fetchProposals={fetchProposals}
       />
     </>
   );

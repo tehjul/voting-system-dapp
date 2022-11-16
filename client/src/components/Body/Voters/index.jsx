@@ -1,32 +1,33 @@
+import Proposals from "./Proposals";
 import WinningProposalId from "./WinningProposalId";
 import GetVoter from "./GetVoter";
 import GetOneProposal from "./GetOneProposal";
 import AddProposal from "./AddProposal";
 import SetVote from "./SetVote";
 
-function Voter({ fetchProposals }) {
+function Voter({ fetchProposals, proposals }) {
 
   return (
     <>
-      <h4>Informations</h4>
-      <div>
-        <WinningProposalId />
-      </div>
-      <div>
-        <GetVoter />
-      </div>
-      <div>
-        <GetOneProposal />
-      </div>
+      <Proposals
+        proposals={proposals}
+        fetchProposals={fetchProposals}
+      />
+
       <hr />
-      <h4>Proposal</h4>
-      <div>
-        <AddProposal
-          fetchProposals={fetchProposals}
-        />
-      </div>
+
+      <WinningProposalId />
+      <GetVoter />
+      <GetOneProposal />
+
       <hr />
-      <h4>Vote</h4>
+
+      <AddProposal
+        fetchProposals={fetchProposals}
+      />
+
+      <hr />
+
       <SetVote
         fetchProposals={fetchProposals}
       />

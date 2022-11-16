@@ -47,7 +47,8 @@ function SetVote({ fetchProposals }) {
   }, [contract])
 
   return (
-    <>
+    <div>
+      <h4>Vote</h4>
       <input
         type="text"
         placeholder="proposal id"
@@ -56,7 +57,7 @@ function SetVote({ fetchProposals }) {
       ></input>
       <button onClick={setVote}>Vote</button>
       {eventValue && <code>{eventValue.voter} Successfully voted for proposal id {eventValue.proposalId}</code>}
-    </>
+    </div>
   );
 }
 

@@ -56,6 +56,7 @@ function Main() {
         statusesName={statusesName}
         fetchProposals={fetchProposals}
         fetchStatus={fetchStatus}
+        proposals={proposals}
       />
       <hr />
       <Footer />

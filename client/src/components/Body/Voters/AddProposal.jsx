@@ -37,7 +37,8 @@ function AddProposal({ fetchProposals }) {
   }, [contract])
 
   return (
-    <>
+    <div>
+      <h4>Proposal</h4>
       <input
         type="text"
         placeholder="description"
@@ -46,7 +47,7 @@ function AddProposal({ fetchProposals }) {
       ></input>
       <button onClick={addProposal}>Add proposal</button>
       {eventValue && <code>Successfully added proposal "{inputValue}" with id {eventValue}</code>}
-    </>
+    </div>
   );
 }
 

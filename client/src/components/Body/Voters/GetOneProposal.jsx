@@ -35,7 +35,7 @@ function GetOneProposal() {
   };
 
   return (
-    <>
+    <div>
       <input
         type="text"
         placeholder="proposal id"
@@ -49,7 +49,7 @@ function GetOneProposal() {
           <code>Vote Count : {proposal.voteCount}</code>
         </>
       )}
-    </>
+    </div>
   );
 }
 

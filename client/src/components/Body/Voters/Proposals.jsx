@@ -8,7 +8,7 @@ function Proposals({ proposals, fetchProposals }) {
 
   return (
     <div>
-      <h4>Proposals</h4>
+      <h4>All proposals</h4>
       {proposals &&
         (
           <table>
