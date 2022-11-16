@@ -21,13 +21,16 @@ function Proposals({ proposals, fetchProposals }) {
             </thead>
             <tbody>
               {proposals.map((proposal, index) => {
-                return (
-                  <tr key={index}>
-                    <td>{index}</td>
-                    <td>{proposal[0]}</td>
-                    <td>{proposal[1]}</td>
-                  </tr>
-                )
+                if (index > 0) {
+                  return (
+                    <tr key={index}>
+                      <td>{index}</td>
+                      <td>{proposal[0]}</td>
+                      <td>{proposal[1]}</td>
+                    </tr>
+                  )
+                }
+                return "";
               })}
             </tbody>
           </table>
