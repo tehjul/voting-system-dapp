@@ -1,4 +1,4 @@
-function Desc({owner, accounts, currentWorkflowStatus}) {
+function ContractInformations({owner, accounts, currentWorkflowStatus}) {
 
   return (
     <>
@@ -15,4 +15,4 @@ function Desc({owner, accounts, currentWorkflowStatus}) {
   );
 }
 
-export default Desc;
+export default ContractInformations;
