@@ -20,7 +20,7 @@ function Header({ setCurrentPage, currentWorkflowStatus, proposals, fetchStatus,
     };
     fetchStatus();
     fetchOwner();
-  }, [accounts, owner, contract, fetchStatus]);
+  }, [contract, fetchStatus]);
 
   function isOwner() {
     if (owner && accounts) return owner === accounts[0];

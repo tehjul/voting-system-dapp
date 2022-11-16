@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import useEth from "../../../contexts/EthContext/useEth";
 
-function NextPhase({ setcurrentWorkflowStatus, statusesName }) {
+function NextPhase({ setcurrentWorkflowStatus, statusesName, fetchStatus }) {
   const { state: { contract, accounts, currentStatus } } = useEth();
   const [eventValue, setEventValue] = useState("");
 
@@ -54,11 +54,11 @@ function NextPhase({ setcurrentWorkflowStatus, statusesName }) {
             oldStatus: _oldStatus,
             newStatus: _newStatus
           });
-          setcurrentWorkflowStatus(statusesName[_newStatus]);
+          fetchStatus();
         })
         .on('error', err => console.log(err))
     })();
-  }, [contract, currentStatus, statusesName, setcurrentWorkflowStatus]);
+  }, [contract, currentStatus, statusesName, setcurrentWorkflowStatus, fetchStatus]);
 
   const functions = [
     startProposalsRegistering,
@@ -69,9 +69,13 @@ function NextPhase({ setcurrentWorkflowStatus, statusesName }) {
     finalPhase
   ]
 
+  const handleNextPhaseClick = async () => {
+    functions[currentStatus]();
+  }
+
   return (
     <>
-      <button onClick={functions[currentStatus]}>Start next phase</button>
+      <button onClick={handleNextPhaseClick}>Start next phase</button>
       {eventValue && <code>Successfully switched from {statusesName[eventValue.oldStatus]} to {statusesName[eventValue.newStatus]}</code>}
     </>
   );

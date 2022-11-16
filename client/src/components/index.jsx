@@ -22,7 +22,8 @@ function Main() {
 
   const fetchStatus = async () => {
     try {
-      setcurrentWorkflowStatus(statusesName[currentStatus]);
+      const _currentStatus = await contract.methods.workflowStatus().call();
+      setcurrentWorkflowStatus(statusesName[_currentStatus]);
     } catch (err) {
       setcurrentWorkflowStatus("");
     }
@@ -54,6 +55,7 @@ function Main() {
         setcurrentWorkflowStatus={setcurrentWorkflowStatus}
         statusesName={statusesName}
         fetchProposals={fetchProposals}
+        fetchStatus={fetchStatus}
       />
       <hr />
       <Footer />

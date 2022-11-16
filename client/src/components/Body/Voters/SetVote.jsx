@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import useEth from "../../../contexts/EthContext/useEth";
 
-function SetVote() {
+function SetVote({ fetchProposals }) {
   const { state: { contract, accounts } } = useEth();
   const [inputValue, setInputValue] = useState("");
   const [eventValue, setEventValue] = useState("");
@@ -20,7 +20,8 @@ function SetVote() {
     setEventValue("");
     await contract.methods.setVote(inputValue).send({ from: accounts[0] }).catch(revert => {
       alert(revert.message)
-    })
+    });
+    await fetchProposals();
   };
 
   useEffect(() => {
@@ -28,15 +29,15 @@ function SetVote() {
       await contract;
       if (contract) {
         await contract.events.Voted({ fromBlock: "earliest" })
-        .on('data', event => {
-          let _voter = event.returnValues.voter;
-          let _proposalId = event.returnValues.proposalId;
-          setEventValue({
-            voter: _voter,
-            proposalId: _proposalId,
-          });
-        })
-        .on('error', err => console.log(err))
+          .on('data', event => {
+            let _voter = event.returnValues.voter;
+            let _proposalId = event.returnValues.proposalId;
+            setEventValue({
+              voter: _voter,
+              proposalId: _proposalId,
+            });
+          })
+          .on('error', err => console.log(err))
       }
     })();
   }, [contract])

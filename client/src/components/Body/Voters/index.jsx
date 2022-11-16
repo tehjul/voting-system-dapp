@@ -27,7 +27,9 @@ function Voter({ fetchProposals }) {
       </div>
       <hr />
       <h4>Vote</h4>
-      <SetVote />
+      <SetVote
+        fetchProposals={fetchProposals}
+      />
     </>
   );
 }
