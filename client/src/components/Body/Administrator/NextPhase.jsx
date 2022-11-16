@@ -77,7 +77,7 @@ function NextPhase({ statusesName, currentWorkflowStatusId, fetchStatus }) {
   return (
     <div className="next-phase">
       <h2>Status managment</h2>
-      <button onClick={handleNextPhaseClick}>Start next phase</button>
+      <button disabled={currentWorkflowStatusId >= 5} onClick={handleNextPhaseClick}>Start next phase</button>
       {eventValue && <code>Successfully switched from {statusesName[eventValue.oldStatus]} to {statusesName[eventValue.newStatus]}</code>}
     </div>
   );
