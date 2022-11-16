@@ -14,7 +14,11 @@ function SetVote({ fetchProposals }) {
 
   const setVote = async () => {
     if (inputValue === "") {
-      alert("Please enter a description.");
+      alert("Please enter an id.");
+      return;
+    }
+    if (parseInt(inputValue) === 0){
+      alert("Can't vote for the genesis proposal");
       return;
     }
     setEventValue("");
