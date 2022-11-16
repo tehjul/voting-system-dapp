@@ -1,0 +1,7 @@
+.contract-info h4 {
+  margin: 2rem 0;
+  background-color: var(--gray);
+  border-radius: 20px;
+  border: 1px black solid;
+  padding: 1rem;
+}

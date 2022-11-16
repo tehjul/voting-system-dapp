@@ -1,0 +1,15 @@
+.menu-button button {
+  font-size: 3rem;
+  font-weight: bold;
+  transition: transform 0.5s;
+  cursor: pointer;
+  padding: 0.5rem 0.7rem;
+  margin: 3rem;
+  border-radius: 20px;
+  background-color: var(--primary-color);
+}
+
+.menu-button button:hover {
+  transform: scale(1.1);
+  transition: transform 0.5s;
+}
