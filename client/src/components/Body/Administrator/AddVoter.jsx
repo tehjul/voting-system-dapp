@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import useEth from "../../../contexts/EthContext/useEth";
+import "./AddVoter.css";
 
 function AddVoter() {
   const { state: { contract, web3, accounts } } = useEth();
@@ -37,16 +38,20 @@ function AddVoter() {
   }, [contract])
 
   return (
-    <div>
-      <h4>Voters managment</h4>
-      <input
-        type="text"
-        placeholder="voter address"
-        value={inputValue}
-        onChange={handleInputChange}
-      ></input>
-      <button onClick={addVoter}>Register a voter</button>
-      {eventValue && <code>Successfully added address {eventValue}</code>}
+    <div className="voter-managment">
+      <h2>Voters managment</h2>
+      <div className="voter">
+        <input
+          className="address"
+          type="text"
+          placeholder="voter address"
+          value={inputValue}
+          onChange={handleInputChange}
+        ></input>
+        <button onClick={addVoter}>Register a voter</button>
+        {eventValue && <code>Successfully added address {eventValue}</code>}
+      </div>
+
     </div>
   );
 }

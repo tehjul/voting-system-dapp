@@ -26,7 +26,6 @@ function Header({ setCurrentPage, currentWorkflowStatus, fetchStatus, fetchOwner
       />
       <ContractInformations
         owner={owner}
-        accounts={accounts}
         currentWorkflowStatus={currentWorkflowStatus}
       />
     </>

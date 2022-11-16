@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import useEth from "../../../contexts/EthContext/useEth";
+import "./TransferOwnership.css";
 
 function TransferOwnership({ fetchOwner }) {
   const { state: { contract, web3, accounts } } = useEth();
@@ -42,16 +43,19 @@ function TransferOwnership({ fetchOwner }) {
   }, [contract])
 
   return (
-    <div>
-      <h4>Contract managment</h4>
-      <input
-        type="text"
-        placeholder="new owner address"
-        value={inputValue}
-        onChange={handleInputChange}
-      ></input>
-      <button onClick={transferOwnership}>Transfer ownership</button>
-      {eventValue && <code>Successfully transfered ownership from {eventValue.previousOwner} to address {eventValue.newOwner}</code>}
+    <div className="ownership">
+      <h2>Contract managment</h2>
+      <div className="transfer-owner">
+        <input
+          className="address"
+          type="text"
+          placeholder="new owner address"
+          value={inputValue}
+          onChange={handleInputChange}
+        ></input>
+        <button onClick={transferOwnership}>Transfer ownership</button>
+        {eventValue && <code>Successfully transfered ownership from {eventValue.previousOwner} to address {eventValue.newOwner}</code>}
+      </div>
     </div>
   );
 }

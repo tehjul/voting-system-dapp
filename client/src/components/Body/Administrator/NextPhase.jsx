@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import useEth from "../../../contexts/EthContext/useEth";
+import "./NextPhase.css";
 
 function NextPhase({ setcurrentWorkflowStatus, statusesName, fetchStatus }) {
   const { state: { contract, accounts, currentStatus } } = useEth();
@@ -74,8 +75,8 @@ function NextPhase({ setcurrentWorkflowStatus, statusesName, fetchStatus }) {
   }
 
   return (
-    <div>
-      <h4>Status managment</h4>
+    <div className="next-phase">
+      <h2>Status managment</h2>
       <button onClick={handleNextPhaseClick}>Start next phase</button>
       {eventValue && <code>Successfully switched from {statusesName[eventValue.oldStatus]} to {statusesName[eventValue.newStatus]}</code>}
     </div>

@@ -1,6 +1,7 @@
 import Header from "./Header";
 import Body from "./Body";
 import Footer from "./Footer/Footer";
+import Wallet from "./Wallet";
 import { useState, useMemo } from "react";
 import { useEth } from "../contexts/EthContext";
 
@@ -53,29 +54,33 @@ function Main() {
   };
 
   return (
-    <div className="container">
-      <Header
-        setCurrentPage={setCurrentPage}
-        currentWorkflowStatus={currentWorkflowStatus}
-        proposals={proposals}
-        fetchStatus={fetchStatus}
-        fetchProposals={fetchProposals}
-        fetchOwner={fetchOwner}
-        owner={owner}
-      />
-      <hr />
-      <Body
-        currentPage={currentPage}
-        setcurrentWorkflowStatus={setcurrentWorkflowStatus}
-        statusesName={statusesName}
-        fetchProposals={fetchProposals}
-        fetchStatus={fetchStatus}
-        proposals={proposals}
-        fetchOwner={fetchOwner}
-      />
-      <hr />
-      <Footer />
-    </div>
+    <>
+      <div className="container">
+        <Wallet />
+        <Header
+          setCurrentPage={setCurrentPage}
+          currentWorkflowStatus={currentWorkflowStatus}
+          proposals={proposals}
+          fetchStatus={fetchStatus}
+          fetchProposals={fetchProposals}
+          fetchOwner={fetchOwner}
+          owner={owner}
+        />
+        <hr />
+        <Body
+          currentPage={currentPage}
+          setcurrentWorkflowStatus={setcurrentWorkflowStatus}
+          statusesName={statusesName}
+          fetchProposals={fetchProposals}
+          fetchStatus={fetchStatus}
+          proposals={proposals}
+          fetchOwner={fetchOwner}
+        />
+        <hr />
+        <Footer />
+      </div>
+    </>
+
   );
 }
 
