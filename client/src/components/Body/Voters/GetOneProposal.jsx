@@ -38,8 +38,8 @@ function GetOneProposal({ currentWorkflowStatusId }) {
     })
   };
 
-  return currentWorkflowStatusId >= 1 ?
-    (<div>
+  return (
+    <div>
       <input
         className="uint"
         type="text"
@@ -54,9 +54,8 @@ function GetOneProposal({ currentWorkflowStatusId }) {
           <code>Vote Count : {proposal.voteCount}</code>
         </>
       )}
-    </div>)
-    :
-    (<></>);
+    </div>
+  );
 }
 
 export default GetOneProposal;

@@ -20,15 +20,17 @@ function Voter({ fetchProposals, proposals, currentWorkflowStatusId }) {
 
 
       <h2>Informations</h2>
-      <WinningProposalId
-        currentWorkflowStatusId={currentWorkflowStatusId}
-      />
+      {currentWorkflowStatusId >= 3 &&
+        <WinningProposalId
+          currentWorkflowStatusId={currentWorkflowStatusId}
+        />
+      }
       <GetVoter />
-      <GetOneProposal
-        currentWorkflowStatusId={currentWorkflowStatusId}
-      />
-
-
+      {currentWorkflowStatusId >= 1 &&
+        <GetOneProposal
+          currentWorkflowStatusId={currentWorkflowStatusId}
+        />
+      }
 
       {currentWorkflowStatusId === 1 &&
         <>
