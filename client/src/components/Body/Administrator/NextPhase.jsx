@@ -1,10 +1,17 @@
 import { useState, useEffect } from "react";
 import useEth from "../../../contexts/EthContext/useEth";
-import "./NextPhase.css";
 
 function NextPhase({ statusesName, currentWorkflowStatusId, fetchStatus }) {
   const { state: { contract, accounts } } = useEth();
   const [eventValue, setEventValue] = useState("");
+  const buttonNames = [
+    "Start proposals registration",
+    "End proposals registration",
+    "Start voting session",
+    "End voting session",
+    "Tally votes",
+    "Disabled"
+  ];
 
   const startProposalsRegistering = async () => {
     await contract.methods.startProposalsRegistering().send({ from: accounts[0] })
@@ -77,7 +84,7 @@ function NextPhase({ statusesName, currentWorkflowStatusId, fetchStatus }) {
   return (
     <div className="next-phase">
       <h2>Status managment</h2>
-      <button disabled={currentWorkflowStatusId >= 5} onClick={handleNextPhaseClick}>Start next phase</button>
+      <button className="interact-btn" disabled={currentWorkflowStatusId >= 5} onClick={handleNextPhaseClick}>{buttonNames[currentWorkflowStatusId]}</button>
       {eventValue && <code>Successfully switched from {statusesName[eventValue.oldStatus]} to {statusesName[eventValue.newStatus]}</code>}
     </div>
   );

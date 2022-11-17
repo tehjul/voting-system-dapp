@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import useEth from "../../../contexts/EthContext/useEth";
+import "./AddProposal.css";
 
-function AddProposal({ fetchProposals }) {
+function AddProposal({ fetchProposals, currentWorkflowStatusId }) {
   const { state: { contract, accounts } } = useEth();
   const [inputValue, setInputValue] = useState("");
   const [eventValue, setEventValue] = useState("");
@@ -11,6 +12,10 @@ function AddProposal({ fetchProposals }) {
   };
 
   const addProposal = async () => {
+    if (currentWorkflowStatusId !== 1) {
+      alert("Proposal registering is not the current phase.");
+      return;
+    }
     if (inputValue === "") {
       alert("Please enter a description.");
       return;
@@ -37,15 +42,17 @@ function AddProposal({ fetchProposals }) {
   }, [contract])
 
   return (
-    <div>
-      <h4>Proposal</h4>
-      <input
+    <div className="add-proposal">
+      <h2>Proposal</h2>
+      <textarea
+        rows="4"
+        cols="50"
         type="text"
-        placeholder="description"
+        placeholder=" description..."
         value={inputValue}
         onChange={handleInputChange}
-      ></input>
-      <button onClick={addProposal}>Add proposal</button>
+      ></textarea>
+      <button className="interact-btn" onClick={addProposal}>Add proposal</button>
       {eventValue && <code>Successfully added proposal "{inputValue}" with id {eventValue}</code>}
     </div>
   );

@@ -41,12 +41,13 @@ function GetOneProposal({currentWorkflowStatusId}) {
   return (
     <div>
       <input
+        className="uint"
         type="text"
         placeholder="proposal id"
         value={inputValue}
         onChange={handleInputChange}
       ></input>
-      <button onClick={getProposal}>Get a proposal informations</button>
+      <button className="interact-btn" onClick={getProposal}>Get a proposal informations</button>
       {proposal && (
         <>
           <code>Description : {proposal.description}</code>

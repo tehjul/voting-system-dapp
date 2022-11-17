@@ -48,7 +48,7 @@ function AddVoter() {
           value={inputValue}
           onChange={handleInputChange}
         ></input>
-        <button onClick={addVoter}>Register a voter</button>
+        <button className="interact-btn" onClick={addVoter}>Register a voter</button>
         {eventValue && <code>Successfully added address {eventValue}</code>}
       </div>
 

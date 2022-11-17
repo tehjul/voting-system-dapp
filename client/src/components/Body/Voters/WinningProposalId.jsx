@@ -21,9 +21,8 @@ function WinningProposalId({ currentWorkflowStatusId }) {
   };
 
   return (
-    <div>
-      <h4>Informations</h4>
-      <button onClick={getWinningProposal}>Winning proposal ID</button>
+    <div className="winning-proposal">
+      <button className="interact-btn" onClick={getWinningProposal}>Winning proposal ID</button>
       {winningProposalId && <code>{winningProposalId}</code>}
     </div>
   );

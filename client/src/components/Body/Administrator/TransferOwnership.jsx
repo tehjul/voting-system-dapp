@@ -53,7 +53,7 @@ function TransferOwnership({ fetchOwner }) {
           value={inputValue}
           onChange={handleInputChange}
         ></input>
-        <button onClick={transferOwnership}>Transfer ownership</button>
+        <button className="interact-btn" onClick={transferOwnership}>Transfer ownership</button>
         {eventValue && <code>Successfully transfered ownership from {eventValue.previousOwner} to address {eventValue.newOwner}</code>}
       </div>
     </div>

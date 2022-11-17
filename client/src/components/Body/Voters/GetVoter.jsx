@@ -34,14 +34,15 @@ function GetVoter() {
   };
 
   return (
-    <div>
+    <div className="get-voter">
       <input
+      className="address"
         type="text"
         placeholder="voter address"
         value={inputValue}
         onChange={handleInputChange}
       ></input>
-      <button onClick={getVoter}>Get a voter informations</button>
+      <button className="interact-btn" onClick={getVoter}>Get a voter informations</button>
       {voter &&
         <>
           <code>

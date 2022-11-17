@@ -9,13 +9,17 @@ function Voter({ fetchProposals, proposals, currentWorkflowStatusId }) {
 
   return (
     <>
-      <Proposals
-        proposals={proposals}
-        fetchProposals={fetchProposals}
-      />
+      {currentWorkflowStatusId > 0 &&
+        <>
+          <Proposals
+            proposals={proposals}
+            fetchProposals={fetchProposals}
+          />
+          <hr />
+        </>}
 
-      <hr />
 
+      <h2>Informations</h2>
       <WinningProposalId
         currentWorkflowStatusId={currentWorkflowStatusId}
       />
@@ -24,17 +28,23 @@ function Voter({ fetchProposals, proposals, currentWorkflowStatusId }) {
         currentWorkflowStatusId={currentWorkflowStatusId}
       />
 
-      <hr />
 
-      <AddProposal
-        fetchProposals={fetchProposals}
-      />
 
-      <hr />
-
-      <SetVote
-        fetchProposals={fetchProposals}
-      />
+      {currentWorkflowStatusId === 1 &&
+        <>
+          <hr />
+          <AddProposal
+            fetchProposals={fetchProposals}
+            currentWorkflowStatusId={currentWorkflowStatusId}
+          />
+        </>}
+      {currentWorkflowStatusId === 3 &&
+        <>
+          <hr />
+          <SetVote
+            fetchProposals={fetchProposals}
+          />
+        </>}
     </>
   );
 }

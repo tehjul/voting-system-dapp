@@ -17,7 +17,7 @@ function SetVote({ fetchProposals }) {
       alert("Please enter an id.");
       return;
     }
-    if (parseInt(inputValue) === 0){
+    if (parseInt(inputValue) === 0) {
       alert("Can't vote for the genesis proposal");
       return;
     }
@@ -48,14 +48,15 @@ function SetVote({ fetchProposals }) {
 
   return (
     <div>
-      <h4>Vote</h4>
+      <h2>Vote</h2>
       <input
+        className="uint"
         type="text"
         placeholder="proposal id"
         value={inputValue}
         onChange={handleInputChange}
       ></input>
-      <button onClick={setVote}>Vote</button>
+      <button className="interact-btn" onClick={setVote}>Vote</button>
       {eventValue && <code>{eventValue.voter} successfully voted for proposal id {eventValue.proposalId}</code>}
     </div>
   );
