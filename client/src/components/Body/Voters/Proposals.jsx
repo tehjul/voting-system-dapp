@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import "./Proposals.css";
 
 function Proposals({ proposals, fetchProposals }) {
 
