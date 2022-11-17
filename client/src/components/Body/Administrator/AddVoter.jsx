@@ -51,7 +51,6 @@ function AddVoter() {
         <button className="interact-btn" onClick={addVoter}>Register a voter</button>
         {eventValue && <code>Successfully added address {eventValue}</code>}
       </div>
-
     </div>
   );
 }

@@ -13,9 +13,12 @@ function Administrator({ statusesName, currentWorkflowStatusId, fetchStatus, fet
 
       <hr />
 
-      <AddVoter />
-
-      <hr />
+      {currentWorkflowStatusId === 0 &&
+        <>
+          <AddVoter />
+          <hr />
+        </>
+      }
 
       <TransferOwnership
         fetchOwner={fetchOwner}
