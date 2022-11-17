@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity 0.8.13;
+pragma solidity 0.8.17;
 import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
 
 /**
@@ -10,7 +10,7 @@ import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
  */
 contract Voting is Ownable {
     /**
-     * @return winningProposalID A uint of the winning proposal ID.
+     * @return winningProposalID An uint of the winning proposal ID.
      */
     uint256 public winningProposalID;
 
@@ -34,6 +34,9 @@ contract Voting is Ownable {
         VotesTallied
     }
 
+    /**
+     * @return workflowStatus An uint of the current workflow status.
+     */
     WorkflowStatus public workflowStatus;
     Proposal[] proposalsArray;
     mapping(address => Voter) voters;
@@ -42,6 +45,7 @@ contract Voting is Ownable {
      * @dev Emitted on each new registration of a voter.
      */
     event VoterRegistered(address voterAddress);
+
     /**
      * @dev Emitted when the workflow status has been changed.
      */
@@ -49,10 +53,12 @@ contract Voting is Ownable {
         WorkflowStatus previousStatus,
         WorkflowStatus newStatus
     );
+
     /**
      * @dev Emitted when a new proposal has been registered.
      */
     event ProposalRegistered(uint256 proposalId);
+
     /**
      * @dev Emitted when a voter has voted.
      */
