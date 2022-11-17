@@ -20,12 +20,13 @@ function WinningProposalId({ currentWorkflowStatusId }) {
     }
   };
 
-  return (
-    <div className="winning-proposal">
+  return currentWorkflowStatusId >= 3 ?
+    (<div className="winning-proposal">
       <button className="interact-btn" onClick={getWinningProposal}>Winning proposal ID</button>
       {winningProposalId && <code>{winningProposalId}</code>}
-    </div>
-  );
+    </div>)
+    :
+    (<></>);
 }
 
 export default WinningProposalId;

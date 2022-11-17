@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useEth from "../../../contexts/EthContext/useEth";
 
-function GetOneProposal({currentWorkflowStatusId}) {
+function GetOneProposal({ currentWorkflowStatusId }) {
   const { state: { contract, accounts } } = useEth();
   const [proposal, setProposal] = useState("");
   const [inputValue, setInputValue] = useState("");
@@ -38,8 +38,8 @@ function GetOneProposal({currentWorkflowStatusId}) {
     })
   };
 
-  return (
-    <div>
+  return currentWorkflowStatusId >= 1 ?
+    (<div>
       <input
         className="uint"
         type="text"
@@ -54,8 +54,9 @@ function GetOneProposal({currentWorkflowStatusId}) {
           <code>Vote Count : {proposal.voteCount}</code>
         </>
       )}
-    </div>
-  );
+    </div>)
+    :
+    (<></>);
 }
 
 export default GetOneProposal;
