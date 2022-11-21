@@ -6,6 +6,7 @@ function AddProposal({ fetchProposals, currentWorkflowStatusId }) {
   const { state: { contract, accounts } } = useEth();
   const [inputValue, setInputValue] = useState("");
   const [eventValue, setEventValue] = useState("");
+  const [eventText, setEventText] = useState("");
 
   const handleInputChange = e => {
     setInputValue(e.target.value);
@@ -21,8 +22,9 @@ function AddProposal({ fetchProposals, currentWorkflowStatusId }) {
       return;
     }
     setEventValue("");
+    setEventText("");
     await contract.methods.addProposal(inputValue).send({ from: accounts[0] }).catch(revert => {
-      alert(revert.message)
+      alert(revert.message);
     });
     await fetchProposals();
   };
@@ -35,11 +37,16 @@ function AddProposal({ fetchProposals, currentWorkflowStatusId }) {
           .on('data', event => {
             let lesevents = event.returnValues.proposalId;
             setEventValue(lesevents);
+            setEventText(inputValue);
           })
-          .on('error', err => console.log(err))
+          .on('error', err => {
+            console.log(err);
+            setEventValue("");
+            setEventText("");
+          })
       }
     })();
-  }, [contract])
+  }, [contract, inputValue])
 
   return (
     <div className="add-proposal">
@@ -53,7 +60,7 @@ function AddProposal({ fetchProposals, currentWorkflowStatusId }) {
         onChange={handleInputChange}
       ></textarea>
       <button className="interact-btn" onClick={addProposal}>Add proposal</button>
-      {eventValue && <code>Successfully added proposal "{inputValue}" with id {eventValue}</code>}
+      {eventValue && <code>Successfully added proposal "{eventText}" with id {eventValue}</code>}
     </div>
   );
 }
